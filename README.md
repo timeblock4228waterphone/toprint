@@ -75,7 +75,9 @@ FUNCTION TranslateTimeToGlyphs(input_hour, input_minute):
     // Remove the boundary line entirely to strip cognitive clutter
     Final_Layout = Hour_Direction + "     " + Minute_Direction
 
-start with 1:30 to 6:45 adding 45 minute interval. show the result for it
+start with 1:30 to 6:45 adding 45 minute interval. 
+
+show the result for it
    
     RETURN Final_Layout
 
