@@ -76,6 +76,7 @@ FUNCTION TranslateTimeToGlyphs(input_hour, input_minute):
     Final_Layout = Hour_Direction + "     " + Minute_Direction
 
     RETURN Final_Layout
+start with 1:30 to 6:45 adding 45 minute interval. show the result for it
 
 END FUNCTION
 
