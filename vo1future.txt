@@ -3,6 +3,11 @@ for future self if version b mess use this
 
 
 
+## STEP 2: PLACE SYMBOLS (Skip if variable is `_`)
+1. **HourArrow (`B`):** `1`=`↖` | `2`=`↑` | `3`=`↗` | `4`=`↙` | `5`=`↓` | `6`=`↘` | `_`=`•`
+2. **Grids:** Put `HourArrow` in `H[A]` and `M[M5]` (2-digit `M5`). Put `MinArrow` (`00–10`=`↑`, `15–25`=`→`, `30–40`=`↓`, `45–55`=`←`) in `A[B]`.
+3. **CODGRID (skip if any `_`):** `T = t` (`+1440` if `< 90`), `U = T - 90`, `R = U mod 360`, `k = floor(R / 45) + 1`. Put `[ X ]` in `C[k]`.
+
 ## SYSTEM OVERVIEW
 - **Seed (`A|B|C|D`):** `A` (1–4, 6-hr quadrant), `B` (1–6, hour slot), `C` (1–2, half-hour), `D` (1–6, 5-min step). Use `_` for intentionally missing parts.
 - **Total Minutes (`t`):** `t = 60[6(A - 1) + B] + [30(C - 1) + 5D]` (if first bracket = `24` -> `00`; if second bracket = `60` -> `00`).
@@ -23,16 +28,10 @@ for future self if version b mess use this
   - `t = 60(H) + M5` (leave `t` blank if any digit is `_`).
 - **Lock Output:** `Seed: A|B|C|D | t=[t] (H=[H], M5=[M5])`
 
-## STEP 2: GRID RULES & COORDINATE MAPS
-1. **Shared Hour Arrow (`B`):**
-   - `1`=`↖` | `2`=`↑` | `3`=`↗` | `4`=`↙` | `5`=`↓` | `6`=`↘` | `_`=`•`
-2. **HOUR QUADRANT (`A` -> `H[A]`, 2×2):**
-   - `1`=`H1` (`R1C1`) | `2`=`H2` (`R2C1`) | `3`=`H3` (`R1C2`) | `4`=`H4` (`R2C2`) | `_`=blank
-   - Places `HourArrow` (`B`).
-3. **5-Minute Grid (`C|D` -> `Mxx`, 4×3):**
-   - `C=1` (`R1–R2`): `D1`=`M05` (`R1C1`), `D2`=`M10` (`R1C2`), `D3`=`M15` (`R1C3`), `D4`=`M20` (`R2C1`), `D5`=`M25` (`R2C2`), `D6`=`M30` (`R2C3`)
-   - `C=2` (`R3–R4`): `D1`=`M35` (`R3C1`), `D2`=`M40` (`R3C2`), `D3`=`M45` (`R3C3`), `D4`=`M50` (`R4C1`), `D5`=`M55` (`R4C2`), `D6`=`M00` (`R4C3`)
-   - If `C` or `D` is `_`, leave blank. Places `HourArrow` (`B`).
+## STEP 2: PLACE SYMBOLS (Skip if variable is `_`)
+1. **HourArrow (`B`):** `1`=`↖` | `2`=`↑` | `3`=`↗` | `4`=`↙` | `5`=`↓` | `6`=`↘` | `_`=`•`
+2. **Grids:** Put `HourArrow` in `H[A]` and `M[M5]` (2-digit `M5`). Put `MinArrow` (`00–10`=`↑`, `15–25`=`→`, `30–40`=`↓`, `45–55`=`←`) in `A[B]`.
+3. **CODGRID (skip if any `_`):** `T = t` (`+1440` if `< 90`), `U = T - 90`, `R = U mod 360`, `k = floor(R / 45) + 1`. Put `[ X ]` in `C[k]`.
 4. **ARROW GRID (`B` -> `A[B]`, `M5` -> `MinArrow`, 2×3):**
    - **Box (`B`):** `1`=`A1` (`R1C1`), `2`=`A2` (`R1C2`), `3`=`A3` (`R1C3`), `4`=`A4` (`R2C1`), `5`=`A5` (`R2C2`), `6`=`A6` (`R2C3`) | `_`=blank
    - **MinArrow (`M5`):** `00–10`=`↑` | `15–25`=`→` | `30–40`=`↓` | `45–55`=`←` | `_`=blank
