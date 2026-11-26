@@ -1,5 +1,44 @@
 for future self if version b mess use this 
 
+
+### CODGRID (Blank-State Arrow Display)
+
+- **Seed (`A|B|C|D`):** `A` (1–4, 6-hr quadrant), `B` (1–6, hour slot), `C` (1–2, half-hour), `D` (1–6, 5-min step). Use `_` for intentionally missing parts.
+- **Total Minutes (`t` & `T`):**
+  - `M = 30(C - 1) + 5D` *(if `M = 60`, set `M = 0`)*
+  - `H = 6(A - 1) + B` *(if `H = 24`, set `H = 0`)*
+  - `t = 60H + M` *(0–1439)*
+  - `T = t` if `t >= 90`, else `t + 1440` *(90–1529)*
+- **STOP RULE:** If `B`, `C`, or `D` is `_` or missing, stop immediately and output the completely blank grid (`[    ]` in all 32 slots).
+- **STEP 1 (Calculate 6-Hour Offset `t_cod`):**
+  - `raw = 60B + M`
+  - `t_cod = raw` if `raw >= 90`, else `raw + 360`
+- **STEP 2 (Find Active Box `b = 1–8`):**
+  - `b = floor((t_cod - 90) / 45) + 1` *(Slots `1–4` = TOP row; Slots `5–8` = BOTTOM row)*
+- **STEP 3 (Find Arrow `a = 1–4`):**
+  - If `A` is `_`, leave all 32 slots blank (`[    ]`).
+  - Otherwise: `a = floor((T - 90) / 360) + 1`:
+    - `1` = `↖` (Top-Left)
+    - `2` = `↙` (Bottom-Left)
+    - `3` = `↗` (Top-Right)
+    - `4` = `↘` (Bottom-Right)
+- **STEP 4 (Render Grid):**
+  - Start from the blueprint below (`[Sba ]` = 4-char slot token for Box `b`, Arrow `a`).
+  - Overwrite the single active token `[Sba ]` with its 4-char arrow (`[ ↖  ]`, `[ ↙  ]`, `[ ↗  ]`, or `[ ↘  ]`).
+  - Replace all remaining 31 unmatched tokens with 4 spaces (`[    ]`).
+
+**Blueprint:**
+```text
+TOP
+[S11 ][S13 ] ║ [S21 ][S23 ] ║ [S31 ][S33 ] ║ [S41 ][S43 ]
+[S12 ][S14 ] ║ [S22 ][S24 ] ║ [S32 ][S34 ] ║ [S42 ][S44 ]
+
+BOTTOM
+[S51 ][S53 ] ║ [S61 ][S63 ] ║ [S71 ][S73 ] ║ [S81 ][S83 ]
+[S52 ][S54 ] ║ [S62 ][S64 ] ║ [S72 ][S74 ] ║ [S82 ][S84 ]
+```
+
+
 5. **CODGRID (`B|C|D` -> `C[k]`, 2×4):**
    - **STOP RULE:** If `B`, `C`, or `D` is `_` or `x` or missing, stop immediately and leave the grid blank.
    - **STEP 1 (Positional Lock & `t_cod`):**
